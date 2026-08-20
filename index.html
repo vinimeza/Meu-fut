@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08111f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Minha Carreira">
+
+<title>Minha Carreira</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    background:#08111f;
+}
+
+body{
+    margin:0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(circle at top right,#172b48 0,#08111f 42%),
+        #08111f;
+
+    color:#f8fafc;
+    min-height:100vh;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:
+        calc(22px + env(safe-area-inset-top))
+        16px
+        calc(40px + env(safe-area-inset-bottom));
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+
+.eyebrow{
+    color:#64748b;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.title{
+    margin:5px 0 2px;
+    font-size:34px;
+    line-height:1.05;
+    font-weight:900;
+}
+
+.subtitle{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.boot{
+    font-size:48px;
+    filter:drop-shadow(0 8px 15px rgba(0,0,0,.3));
+}
+
+/* CARDS */
+
+.card{
+    background:rgba(23,32,51,.92);
+    border:1px solid #26364f;
+    border-radius:18px;
+    padding:17px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.section{
+    margin-top:20px;
+}
+
+.section-title{
+    margin:0 0 11px;
+    font-size:18px;
+    font-weight:850;
+}
+
+/* MAIN STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.label{
+    color:#94a3b8;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+.number{
+    margin-top:5px;
+    font-size:30px;
+    line-height:1;
+    font-weight:900;
+}
+
+/* FORM */
+
+.form-card{
+    margin-top:16px;
+}
+
+.form{
+    display:grid;
+    gap:12px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:6px;
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:700;
+}
+
+.input,
+.select{
+    width:100%;
+    height:48px;
+
+    background:#0d1728;
+    color:#fff;
+
+    border:1px solid #33445e;
+    border-radius:12px;
+
+    padding:0 13px;
+    outline:none;
+
+    font-size:16px;
+}
+
+.input:focus,
+.select:focus{
+    border-color:#94a3b8;
+}
+
+.register{
+    width:100%;
+    height:50px;
+
+    border:0;
+    border-radius:13px;
+
+    background:#f8fafc;
+    color:#08111f;
+
+    font-size:15px;
+    font-weight:900;
+
+    transition:.15s;
+}
+
+.register:active{
+    transform:scale(.98);
+}
+
+/* CATEGORY */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.category{
+    text-align:center;
+}
+
+.category-value{
+    display:block;
+    margin-top:6px;
+    font-size:20px;
+    font-weight:900;
+}
+
+.green{
+    border-top:3px solid #22c55e;
+}
+
+.blue{
+    border-top:3px solid #3b82f6;
+}
+
+.red{
+    border-top:3px solid #ef4444;
+}
+
+/* GOAL */
+
+.goal-line{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+
+    margin-top:11px;
+
+    background:#0b1423;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+
+    background:#f8fafc;
+
+    border-radius:99px;
+
+    transition:width .35s ease;
+}
+
+/* INSIGHTS */
+
+.insights{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.insight-number{
+    margin-top:6px;
+    font-size:24px;
+    font-weight:900;
+}
+
+.insight-small{
+    margin-top:4px;
+    color:#64748b;
+    font-size:11px;
+}
+
+/* CHART */
+
+.chart-card{
+    margin-top:10px;
+}
+
+.chart{
+    height:145px;
+
+    display:flex;
+    align-items:flex-end;
+
+    gap:10px;
+
+    padding-top:12px;
+}
+
+.chart-column{
+    flex:1;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+
+    gap:5px;
+
+    min-width:0;
+}
+
+.chart-value{
+    font-size:11px;
+    font-weight:800;
+}
+
+.chart-bar{
+    width:100%;
+    max-width:38px;
+
+    min-height:3px;
+
+    background:#64748b;
+
+    border-radius:7px 7px 2px 2px;
+
+    transition:.3s;
+}
+
+.chart-label{
+    color:#94a3b8;
+    font-size:10px;
+
+    white-space:nowrap;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+}
+
+.achievement{
+    background:#172033;
+    border:1px solid #26364f;
+    border-radius:13px;
+
+    padding:12px;
+}
+
+.achievement.locked{
+    opacity:.32;
+}
+
+.achievement-name{
+    font-size:13px;
+    font-weight:850;
+}
+
+.achievement-description{
+    margin-top:3px;
+    color:#94a3b8;
+    font-size:11px;
+}
+
+/* FILTERS */
+
+.filters{
+    display:flex;
+    gap:7px;
+
+    overflow-x:auto;
+
+    padding-bottom:4px;
+
+    scrollbar-width:none;
+}
+
+.filters::-webkit-scrollbar{
+    display:none;
+}
+
+.filter{
+    flex-shrink:0;
+
+    border:1px solid #33445e;
+    background:#172033;
+    color:#cbd5e1;
+
+    border-radius:999px;
+
+    padding:8px 13px;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.filter.active{
+    background:#f8fafc;
+    color:#08111f;
+}
+
+/* HISTORY */
+
+.history{
+    margin-top:10px;
+}
+
+.game{
+    display:grid;
+
+    grid-template-columns:
+        76px
+        1fr
+        45px
+        auto
+        auto;
+
+    gap:8px;
+
+    align-items:center;
+
+    background:#172033;
+
+    border:1px solid #26364f;
+
+    border-radius:13px;
+
+    padding:11px;
+
+    margin-bottom:7px;
+}
+
+.game-date{
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.game-type{
+    display:inline-block;
+
+    background:#26364f;
+
+    color:#e2e8f0;
+
+    border-radius:99px;
+
+    padding:5px 8px;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+.game-goals{
+    text-align:right;
+    font-size:14px;
+    font-weight:900;
+}
+
+.action{
+    border:1px solid #33445e;
+
+    background:#26364f;
+
+    color:#fff;
+
+    border-radius:8px;
+
+    padding:7px 8px;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+.action.delete{
+    background:transparent;
+    color:#fca5a5;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+
+    color:#64748b;
+
+    border:1px dashed #33445e;
+
+    border-radius:14px;
+
+    padding:27px 15px;
+
+    font-size:13px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    background:#f8fafc;
+    color:#08111f;
+
+    border-radius:99px;
+
+    padding:11px 17px;
+
+    font-size:13px;
+    font-weight:900;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.25s;
+
+    z-index:999;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+    .app{
+        padding-left:14px;
+        padding-right:14px;
+    }
+
+    .title{
+        font-size:29px;
+    }
+
+    .boot{
+        font-size:40px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    .number{
+        font-size:25px;
+    }
+
+    .categories{
+        grid-template-columns:1fr;
+    }
+
+    .insights{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    .insight-number{
+        font-size:21px;
+    }
+
+    .achievements{
+        grid-template-columns:1fr;
+    }
+
+    .game{
+        grid-template-columns:
+            65px
+            1fr
+            40px
+            auto
+            auto;
+    }
+
+    .action{
+        padding:7px 6px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div>
+
+            <div class="eyebrow">
+                Minha temporada
+            </div>
+
+            <div class="title">
+                Minha Carreira
+            </div>
+
+            <div class="subtitle">
+                Minha história com essa chuteira 👟
+            </div>
+
+        </div>
+
+        <div class="boot">
+            👟
+        </div>
+
+    </header>
+
+
+    <!-- MAIN STATS -->
+
+    <div class="stats">
+
+        <div class="card">
+            <div class="label">
+                Gols
+            </div>
+
+            <div class="number" id="totalGoals">
+                0
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="label">
+                Jogos
+            </div>
+
+            <div class="number" id="totalGames">
+                0
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="label">
+                Média
+            </div>
+
+            <div class="number" id="average">
+                0,00
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- REGISTER -->
+
+    <div class="section">
+
+        <div class="section-title">
+            ⚽ Registrar partida
+        </div>
+
+        <div class="card">
+
+            <form id="gameForm" class="form">
+
+                <div class="field">
+
+                    <label for="date">
+                        Data
+                    </label>
+
+                    <input
+                        class="input"
+                        id="date"
+                        type="date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="type">
+                        Tipo de partida
+                    </label>
+
+                    <select
+                        class="select"
+                        id="type"
+                    >
+
+                        <option value="Pelada">
+                            🟢 Pelada
+                        </option>
+
+                        <option value="Amistoso">
+                            🔵 Amistoso
+                        </option>
+
+                        <option value="Campeonato">
+                            🔴 Campeonato
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="goals">
+                        Gols marcados
+                    </label>
+
+                    <input
+                        class="input"
+                        id="goals"
+                        type="number"
+                        min="0"
+                        max="99"
+                        value="0"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="register"
+                    id="submitButton"
+                    type="submit"
+                >
+                    + REGISTRAR JOGO
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORIES -->
+
+    <div class="section">
+
+        <div class="section-title">
+            📊 Por categoria
+        </div>
+
+        <div class="categories">
+
+            <div class="card category green">
+
+                <div class="label">
+                    Peladas
+                </div>
+
+                <span
+                    class="category-value"
+                    id="pelada"
+                >
+                    0 gols
+                </span>
+
+            </div>
+
+
+            <div class="card category blue">
+
+                <div class="label">
+                    Amistosos
+                </div>
+
+                <span
+                    class="category-value"
+                    id="amistoso"
+                >
+                    0 gols
+                </span>
+
+            </div>
+
+
+            <div class="card category red">
+
+                <div class="label">
+                    Campeonatos
+                </div>
+
+                <span
+                    class="category-value"
+                    id="campeonato"
+                >
+                    0 gols
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- GOAL -->
+
+    <div class="section">
+
+        <div class="section-title">
+            🎯 Meta de 100 gols
+        </div>
+
+        <div class="card">
+
+            <div class="goal-line">
+
+                <span id="progressText">
+                    0 de 100
+                </span>
+
+                <span id="remaining">
+                    Faltam 100
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INSIGHTS -->
+
+    <div class="section">
+
+        <div class="section-title">
+            🔥 Desempenho
+        </div>
+
+        <div class="insights">
+
+            <div class="card">
+
+                <div class="label">
+                    Jogos marcando
+                </div>
+
+                <div
+                    class="insight-number"
+                    id="scoringPercentage"
+                >
+                    0%
+                </div>
+
+                <div
+                    class="insight-small"
+                    id="scoringDetail"
+                >
+                    0 de 0
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="label">
+                    Recorde
+                </div>
+
+                <div
+                    class="insight-number"
+                    id="record"
+                >
+                    0
+                </div>
+
+                <div class="insight-small">
+                    gols em um jogo
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="label">
+                    Sequência
+                </div>
+
+                <div
+                    class="insight-number"
+                    id="streak"
+                >
+                    0
+                </div>
+
+                <div class="insight-small">
+                    jogos marcando
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORY CHART -->
+
+    <div class="card chart-card">
+
+        <div class="label">
+            GOLS POR CATEGORIA
+        </div>
+
+        <div
+            class="chart"
+            id="categoryChart"
+        ></div>
+
+    </div>
+
+
+    <!-- MONTH CHART -->
+
+    <div class="card chart-card">
+
+        <div class="label">
+            GOLS POR MÊS
+        </div>
+
+        <div
+            class="chart"
+            id="monthChart"
+        ></div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENTS -->
+
+    <div class="section">
+
+        <div class="section-title">
+            🏆 Conquistas
+        </div>
+
+        <div
+            class="achievements"
+            id="achievements"
+        ></div>
+
+    </div>
+
+
+    <!-- HISTORY -->
+
+    <div class="section">
+
+        <div class="section-title">
+            📅 Histórico
+        </div>
+
+
+        <div class="filters">
+
+            <button
+                class="filter active"
+                data-filter="Todos"
+            >
+                Todos
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Pelada"
+            >
+                Peladas
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Amistoso"
+            >
+                Amistosos
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Campeonato"
+            >
+                Campeonatos
+            </button>
+
+        </div>
+
+
+        <div
+            id="history"
+            class="history"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+const STORAGE_KEY = "minha-carreira-futebol-v1";
+
+let games = [];
+
+let editingIndex = -1;
+
+let activeFilter = "Todos";
+
+
+/* LOAD DATA */
+
+try{
+
+    const saved =
+        localStorage.getItem(STORAGE_KEY);
+
+    if(saved){
+
+        const parsed =
+            JSON.parse(saved);
+
+        if(Array.isArray(parsed)){
+            games = parsed;
+        }
+
+    }
+
+}catch(error){
+
+    games = [];
+
+}
+
+
+/* ELEMENTS */
+
+const form =
+    document.getElementById("gameForm");
+
+const dateInput =
+    document.getElementById("date");
+
+const typeInput =
+    document.getElementById("type");
+
+const goalsInput =
+    document.getElementById("goals");
+
+const submitButton =
+    document.getElementById("submitButton");
+
+
+/* TODAY */
+
+function today(){
+
+    const d = new Date();
+
+    return (
+        d.getFullYear()
+        + "-"
+        + String(d.getMonth()+1).padStart(2,"0")
+        + "-"
+        + String(d.getDate()).padStart(2,"0")
+    );
+
+}
+
+dateInput.value = today();
+
+
+/* SAVE */
+
+function save(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(games)
+    );
+
+}
+
+
+/* TOAST */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(
+        () => toast.classList.remove("show"),
+        1800
+    );
+
+}
+
+
+/* FORMAT DATE */
+
+function formatDate(date){
+
+    if(!date){
+        return "";
+    }
+
+    const parts =
+        date.split("-");
+
+    return (
+        parts[2]
+        + "/"
+        + parts[1]
+        + "/"
+        + parts[0]
+    );
+
+}
+
+
+/* CATEGORY GOALS */
+
+function categoryGoals(type){
+
+    return games
+        .filter(game => game.type === type)
+        .reduce(
+            (sum,game) => sum + game.goals,
+            0
+        );
+
+}
+
+
+/* BEST RECORD */
+
+function getRecord(){
+
+    if(!games.length){
+        return 0;
+    }
+
+    return Math.max(
+        ...games.map(game => game.goals)
+    );
+
+}
+
+
+/* SCORING GAMES */
+
+function getScoringGames(){
+
+    return games.filter(
+        game => game.goals > 0
+    ).length;
+
+}
+
+
+/* BEST SCORING STREAK */
+
+function getBestStreak(){
+
+    if(!games.length){
+        return 0;
+    }
+
+    const sorted =
+        [...games]
+        .sort(
+            (a,b) =>
+                a.date.localeCompare(b.date)
+        );
+
+    let current = 0;
+
+    let best = 0;
+
+    sorted.forEach(game => {
+
+        if(game.goals > 0){
+
+            current++;
+
+            if(current > best){
+                best = current;
+            }
+
+        }else{
+
+            current = 0;
+
+        }
+
+    });
+
+    return best;
+
+}
+
+
+/* RENDER MAIN */
+
+function render(){
+
+    const totalGoals =
+        games.reduce(
+            (sum,game) =>
+                sum + game.goals,
+            0
+        );
+
+    const totalGames =
+        games.length;
+
+
+    const average =
+        totalGames
+        ? totalGoals / totalGames
+        : 0;
+
+
+    document.getElementById(
+        "totalGoals"
+    ).textContent =
+        totalGoals;
+
+
+    document.getElementById(
+        "totalGames"
+    ).textContent =
+        totalGames;
+
+
+    document.getElementById(
+        "average"
+    ).textContent =
+        average
+            .toFixed(2)
+            .replace(".",",");
+
+
+    /* CATEGORIES */
+
+    const categories = [
+        "Pelada",
+        "Amistoso",
+        "Campeonato"
+    ];
+
+
+    categories.forEach(type => {
+
+        const goals =
+            categoryGoals(type);
+
+        const element =
+            document.getElementById(
+                type.toLowerCase()
+            );
+
+        element.textContent =
+            goals
+            + " "
+            + (
+                goals === 1
+                ? "gol"
+                : "gols"
+            );
+
+    });
+
+
+    /* GOAL */
+
+    const percentage =
+        Math.min(
+            100,
+            totalGoals
+        );
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        totalGoals
+        + " de 100";
+
+
+    document.getElementById(
+        "remaining"
+    ).textContent =
+        totalGoals >= 100
+        ? "META ALCANÇADA! 🎉"
+        : "Faltam "
+        + (100 - totalGoals);
+
+
+    /* INSIGHTS */
+
+    const scoring =
+        getScoringGames();
+
+
+    const scoringPercentage =
+        totalGames
+        ? Math.round(
+            scoring /
+            totalGames *
+            100
+        )
+        : 0;
+
+
+    document.getElementById(
+        "scoringPercentage"
+    ).textContent =
+        scoringPercentage
+        + "%";
+
+
+    document.getElementById(
+        "scoringDetail"
+    ).textContent =
+        scoring
+        + " de "
+        + totalGames;
+
+
+    document.getElementById(
+        "record"
+    ).textContent =
+        getRecord();
+
+
+    document.getElementById(
+        "streak"
+    ).textContent =
+        getBestStreak();
+
+
+    renderCharts();
+
+    renderAchievements();
+
+    renderHistory();
+
+}
+
+
+/* CATEGORY CHART */
+
+function renderCategoryChart(){
+
+    const types = [
+        "Pelada",
+        "Amistoso",
+        "Campeonato"
+    ];
+
+
+    const values =
+        types.map(
+            type =>
+                categoryGoals(type)
+        );
+
+
+    const max =
+        Math.max(
+            1,
+            ...values
+        );
+
+
+    const chart =
+        document.getElementById(
+            "categoryChart"
+        );
+
+
+    chart.innerHTML =
+        values.map(
+            (value,index) => {
+
+                const height =
+                    Math.max(
+                        3,
+                        value /
+                        max *
+                        90
+                    );
+
+
+                return `
+                    <div class="chart-column">
+
+                        <div class="chart-value">
+                            ${value}
+                        </div>
+
+                        <div
+                            class="chart-bar"
+                            style="height:${height}px"
+                        ></div>
+
+                        <div class="chart-label">
+                            ${types[index]}
+                        </div>
+
+                    </div>
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+/* MONTH CHART */
+
+function renderMonthChart(){
+
+    const months = {};
+
+
+    games.forEach(game => {
+
+        const month =
+            game.date.substring(0,7);
+
+        months[month] =
+            (months[month] || 0)
+            + game.goals;
+
+    });
+
+
+    const keys =
+        Object.keys(months)
+        .sort()
+        .slice(-6);
+
+
+    const chart =
+        document.getElementById(
+            "monthChart"
+        );
+
+
+    if(!keys.length){
+
+        chart.innerHTML =
+            `
+            <div class="empty"
+                 style="width:100%;padding:15px">
+                Registre jogos para ver sua evolução.
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    const max =
+        Math.max(
+            1,
+            ...keys.map(
+                key => months[key]
+            )
+        );
+
+
+    chart.innerHTML =
+        keys.map(key => {
+
+            const value =
+                months[key];
+
+
+            const height =
+                Math.max(
+                    3,
+                    value /
+                    max *
+                    90
+                );
+
+
+            const label =
+                key.substring(5);
+
+
+            return `
+                <div class="chart-column">
+
+                    <div class="chart-value">
+                        ${value}
+                    </div>
+
+                    <div
+                        class="chart-bar"
+                        style="height:${height}px"
+                    ></div>
+
+                    <div class="chart-label">
+                        ${label}
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* CHARTS */
+
+function renderCharts(){
+
+    renderCategoryChart();
+
+    renderMonthChart();
+
+}
+
+
+/* ACHIEVEMENTS */
+
+function renderAchievements(){
+
+    const total =
+        games.reduce(
+            (sum,game) =>
+                sum + game.goals,
+            0
+        );
+
+
+    const gamesCount =
+        games.length;
+
+
+    const record =
+        getRecord();
+
+
+    const scoring =
+        getScoringGames();
+
+
+    const achievements = [
+
+        {
+            icon:"⚽",
+            name:"Primeiro gol",
+            description:"Marque seu primeiro gol",
+            unlocked:total >= 1
+        },
+
+        {
+            icon:"🔥",
+            name:"10 gols",
+            description:"Chegue aos 10 gols",
+            unlocked:total >= 10
+        },
+
+        {
+            icon:"💥",
+            name:"25 gols",
+            description:"Chegue aos 25 gols",
+            unlocked:total >= 25
+        },
+
+        {
+            icon:"💯",
+            name:"100 gols",
+            description:"Complete a meta",
+            unlocked:total >= 100
+        },
+
+        {
+            icon:"🎩",
+            name:"Hat-trick",
+            description:"Faça 3 gols em um jogo",
+            unlocked:record >= 3
+        },
+
+        {
+            icon:"🔥",
+            name:"5 jogos marcando",
+            description:"Marque em 5 partidas",
+            unlocked:scoring >= 5
+        },
+
+        {
+            icon:"🏟️",
+            name:"10 partidas",
+            description:"Registre 10 jogos",
+            unlocked:gamesCount >= 10
+        },
+
+        {
+            icon:"🚀",
+            name:"50 partidas",
+            description:"Registre 50 jogos",
+            unlocked:gamesCount >= 50
+        },
+
+        {
+            icon:"👑",
+            name:"100 partidas",
+            description:"Registre 100 jogos",
+            unlocked:gamesCount >= 100
+        }
+
+    ];
+
+
+    const container =
+        document.getElementById(
+            "achievements"
+        );
+
+
+    container.innerHTML =
+        achievements.map(
+            achievement => `
+
+                <div
+                    class="
+                        achievement
+                        ${achievement.unlocked
+                            ? ""
+                            : "locked"}
+                    "
+                >
+
+                    <div class="achievement-name">
+
+                        ${achievement.icon}
+                        ${achievement.name}
+
+                        ${
+                            achievement.unlocked
+                            ? " ✓"
+                            : " 🔒"
+                        }
+
+                    </div>
+
+                    <div class="achievement-description">
+                        ${achievement.description}
+                    </div>
+
+                </div>
+
+            `
+        ).join("");
+
+}
+
+
+/* HISTORY */
+
+function renderHistory(){
+
+    const container =
+        document.getElementById(
+            "history"
+        );
+
+
+    let filtered =
+        activeFilter === "Todos"
+        ? [...games]
+        : games.filter(
+            game =>
+                game.type === activeFilter
+        );
+
+
+    filtered.sort(
+        (a,b) =>
+            b.date.localeCompare(a.date)
+    );
+
+
+    if(!filtered.length){
+
+        container.innerHTML =
+            `
+            <div class="empty">
+                Nenhuma partida registrada.
+                <br>
+                O primeiro gol começa a carreira. ⚽
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        filtered.map(game => {
+
+            const index =
+                games.indexOf(game);
+
+
+            return `
+
+                <div class="game">
+
+                    <div class="game-date">
+                        ${formatDate(game.date)}
+                    </div>
+
+                    <div>
+
+                        <span class="game-type">
+                            ${game.type}
+                        </span>
+
+                    </div>
+
+                    <div class="game-goals">
+                        ⚽ ${game.goals}
+                    </div>
+
+                    <button
+                        class="action"
+                        data-edit="${index}"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        class="action delete"
+                        data-delete="${index}"
+                    >
+                        Excluir
+                    </button>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    /* EDIT */
+
+    container
+        .querySelectorAll(
+            "[data-edit]"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const index =
+                        Number(
+                            button.dataset.edit
+                        );
+
+                    editGame(index);
+
+                }
+            );
+
+        });
+
+
+    /* DELETE */
+
+    container
+        .querySelectorAll(
+            "[data-delete]"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const index =
+                        Number(
+                            button.dataset.delete
+                        );
+
+                    deleteGame(index);
+
+                }
+            );
+
+        });
+
+}
+
+
+/* EDIT */
+
+function editGame(index){
+
+    const game =
+        games[index];
+
+
+    if(!game){
+        return;
+    }
+
+
+    dateInput.value =
+        game.date;
+
+
+    typeInput.value =
+        game.type;
+
+
+    goalsInput.value =
+        game.goals;
+
+
+    editingIndex =
+        index;
+
+
+    submitButton.textContent =
+        "SALVAR ALTERAÇÃO";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    showToast(
+        "Editando partida"
+    );
+
+}
+
+
+/* DELETE */
+
+function deleteGame(index){
+
+    const game =
+        games[index];
+
+
+    if(!game){
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Excluir esta partida?"
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    games.splice(
+        index,
+        1
+    );
+
+
+    save();
+
+
+    showToast(
+        "Partida excluída"
+    );
+
+
+    render();
+
+}
+
+
+/* REGISTER */
+
+form.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        const date =
+            dateInput.value;
+
+
+        const type =
+            typeInput.value;
+
+
+        const goals =
+            Math.max(
+                0,
+                Math.min(
+                    99,
+                    parseInt(
+                        goalsInput.value,
+                        10
+                    ) || 0
+                )
+            );
+
+
+        if(!date){
+            return;
+        }
+
+
+        const game = {
+
+            date:date,
+
+            type:type,
+
+            goals:goals
+
+        };
+
+
+        if(editingIndex === -1){
+
+            games.push(game);
+
+            showToast(
+                "Jogo registrado ⚽"
+            );
+
+        }else{
+
+            games[editingIndex] =
+                game;
+
+            editingIndex =
+                -1;
+
+            submitButton.textContent =
+                "+ REGISTRAR JOGO";
+
+            showToast(
+                "Partida atualizada ✓"
+            );
+
+        }
+
+
+        games.sort(
+            (a,b) =>
+                a.date.localeCompare(
+                    b.date
+                )
+        );
+
+
+        save();
+
+
+        goalsInput.value =
+            0;
+
+
+        dateInput.value =
+            today();
+
+
+        render();
+
+    }
+);
+
+
+/* FILTERS */
+
+document
+    .querySelectorAll(
+        "[data-filter]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                activeFilter =
+                    button.dataset.filter;
+
+
+                document
+                    .querySelectorAll(
+                        "[data-filter]"
+                    )
+                    .forEach(
+                        item =>
+                            item.classList.toggle(
+                                "active",
+                                item === button
+                            )
+                    );
+
+
+                renderHistory();
+
+            }
+        );
+
+    });
+
+
+/* INITIAL */
+
+render();
+
+</script>
+
+</body>
+</html>
